@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 import { Footer } from '../../../../payload/payload-types'
@@ -33,7 +34,12 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
       </Gutter>
 
       <div className={classes.footer}>
-          
+        <Gutter>
+          <div className={classes.wrap}>
+            <Link href="/" />
+            <Image src="/logo-white.svg" alt="logo" width={170} height={50} />
+          </div>
+        </Gutter>
       </div>
     </footer>
   )
