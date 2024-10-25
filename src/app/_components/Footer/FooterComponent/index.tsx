@@ -5,14 +5,16 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-import { Footer } from '../../../../payload/payload-types'
-import { inclusions, noHeaderFooterUrls } from '../../../constants'
+import { Footer, Media } from '../../../../payload/payload-types'
+import { inclusions, noHeaderFooterUrls, profileNavItems } from '../../../constants'
+import { Button } from '../../Button'
 import { Gutter } from '../../Gutter'
 
 import classes from './index.module.scss'
 
 const FooterComponent = ({ footer }: { footer: Footer }) => {
   const currentYear = new Date().getFullYear()
+  const navItems = footer?.navItems || []
 
   const pathname = usePathname()
   return (
@@ -42,8 +44,30 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
               <Image src="/logo-white.svg" alt="logo" width={170} height={50} />
             </Link>
             <p>
-              {currentYear} {footer.copyright}
+              @ {currentYear} {footer.copyright}
             </p>
+            <div className={classes.socialLinks}>
+              {navItems.map(item => {
+                const icon = item?.link?.icon as Media
+                return (
+                  <Button
+                    key={item.link.label}
+                    el="link"
+                    href={item.link.url}
+                    newTab={true}
+                    className={classes.socialLinkItem}
+                  >
+                    <Image
+                      src={icon?.url}
+                      alt={item.link.label}
+                      width={24}
+                      height={24}
+                      className={classes.socialIcon}
+                    />
+                  </Button>
+                )
+              })}
+            </div>
           </div>
         </Gutter>
       </div>
