@@ -12,6 +12,8 @@ import { Gutter } from '../../Gutter'
 import classes from './index.module.scss'
 
 const FooterComponent = ({ footer }: { footer: Footer }) => {
+  const currentYear = new Date().getFullYear()
+
   const pathname = usePathname()
   return (
     <footer className={noHeaderFooterUrls.includes(pathname) ? classes.hide : ' '}>
@@ -36,8 +38,12 @@ const FooterComponent = ({ footer }: { footer: Footer }) => {
       <div className={classes.footer}>
         <Gutter>
           <div className={classes.wrap}>
-            <Link href="/" />
-            <Image src="/logo-white.svg" alt="logo" width={170} height={50} />
+            <Link href="/">
+              <Image src="/logo-white.svg" alt="logo" width={170} height={50} />
+            </Link>
+            <p>
+              {currentYear} {footer.copyright}
+            </p>
           </div>
         </Gutter>
       </div>
