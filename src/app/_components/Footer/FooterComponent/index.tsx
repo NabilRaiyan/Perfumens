@@ -15,10 +15,10 @@ import classes from './index.module.scss'
 const FooterComponent = ({ footer }: { footer: Footer }) => {
   const currentYear = new Date().getFullYear()
   const navItems = footer?.navItems || []
-
   const pathname = usePathname()
+
   return (
-    <footer className={noHeaderFooterUrls.includes(pathname) ? classes.hide : ' '}>
+    <footer className={noHeaderFooterUrls.includes(pathname ?? '') ? classes.hide : ' '}>
       <Gutter>
         <ul className={classes.inclusions}>
           {inclusions.map((inclusion, index) => (
